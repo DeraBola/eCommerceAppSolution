@@ -15,13 +15,4 @@ namespace eCommerceApp.Domain.Entities
 		public Category? Category { get; set; }
 		public Guid CategoryId { get; set; }
 	}
-
-	public class Category
-	{
-		[Key]
-		public Guid Id { get; set; }
-		public string? Name { get; set; }
-		 
-	}
-
 }
