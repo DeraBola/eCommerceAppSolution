@@ -3,7 +3,7 @@ using eCommerceApp.Application.DTOs.Product;
 
 namespace eCommerceApp.Application.Services.Interfaces
 {
-	public interface IProductService
+	public interface ICategoryService
 	{
 		Task<IEnumerable<GetProduct>> GetAllAsync();
 		Task<GetProduct> GetByIdAsync(Guid id);
