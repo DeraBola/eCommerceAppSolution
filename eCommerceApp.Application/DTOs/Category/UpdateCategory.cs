@@ -1,6 +1,8 @@
-﻿namespace eCommerceApp.Application.DTOs.Category
+﻿using Microsoft.Identity.Client;
+
+namespace eCommerceApp.Application.DTOs.Category
 {
-    public class UpdateCategory : CategoryBase
+	public class UpdateCategory : CategoryBase
     {
         public Guid Id { get; set; }
     }
