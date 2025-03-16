@@ -5,7 +5,7 @@ namespace eCommerceApp.Host.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ProductController : ControllerBase
+	public class ProductController(IProductService productService) : ControllerBase
 	{
 	}
 }
