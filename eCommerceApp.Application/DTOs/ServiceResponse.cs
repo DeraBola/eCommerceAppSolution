@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Application.DTOs
 {
-	internal class ServiceResponse
-	{
-	}
+	public record ServiceResponse(bool Success = false, string Message = null! );
 }

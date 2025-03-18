@@ -1,12 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using eCommerceApp.Application.Mapping;
+using eCommerceApp.Application.Services.Implementations;
+using eCommerceApp.Application.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace eCommerceApp.Application.DependencyInjection
 {
-	internal class ServiceContainer
+	public static class ServiceContainer
 	{
-	}
+        public static IServiceCollection AddApplicationService
+			(this IServiceCollection services)
+		{
+			services.AddAutoMapper(typeof(MappingConfig));
+			services.AddScoped<IProductService, ProductService>();
+			services.AddScoped<ICategoryService, CategoryService>();
+
+			return services;
+        }
+    }
 }
