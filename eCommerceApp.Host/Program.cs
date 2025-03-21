@@ -24,6 +24,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureService(builder.Configuration);
 builder.Services.AddApplicationService();
 
+builder.Services.AddCors(builder =>
+{
+	builder.AddDefaultPolicy(options =>
+	{
+		options.AllowAnyHeader()
+		.WithOrigins("https://localhost:7025")
+		.AllowAnyMethod()
+		.AllowCredentials();
+	});
+});
+
 try
 {
 	var app = builder.Build();
@@ -34,6 +45,8 @@ try
 		app.UseSwagger();
 		app.UseSwaggerUI();
 	}
+
+	app.UseCors("OpenPolicy");
 
 	app.UseInfrastuctureService();
 

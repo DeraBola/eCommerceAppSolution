@@ -1,14 +1,19 @@
 ﻿using eCommerceApp.Domain.Entities;
 using eCommerceApp.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceApp.Infrastructure.Data
 {
-	public class AppDbContext(DbContextOptions options) : DbContext(options)
+	public class AppDbContext : IdentityDbContext<AppUser>
 	{
+		public AppDbContext(DbContextOptions options) : base(options)
+		{
+		}
+
+		public DbSet<AppUser> users { get; set; }
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<RefreshToken> RefreshToken { get; set; }
-		// public DbSet<AppUser> Users { get; set; }
 	}
 }

@@ -7,5 +7,4 @@ namespace eCommerceApp.Application.Validations
 	{
 		Task<ServiceResponse> ValidateAsync<T>(T model, IValidator<T> validator);
 	}
-
 }

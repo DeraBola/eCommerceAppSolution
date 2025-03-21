@@ -10,7 +10,7 @@ namespace eCommerceApp.Domain.Interfaces.Authentication
 		Task<AppUser?> GetUserByEmail(string email);
 		Task<AppUser> GetUserById(string id);
 		Task<IEnumerable<AppUser>?> GetAllUsers();
-		Task<int> RemoverUserByEmail(string email);
+		Task<int> RemoveUserByEmail(string email);
 		Task<List<Claim>> GetUserClaims(string email);
 	}
 

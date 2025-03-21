@@ -55,7 +55,7 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication
 			return await userManager.CheckPasswordAsync(_user, user.PasswordHash!);
 		}
 
-		public async Task<int> RemoverUserByEmail(string email)
+		public async Task<int> RemoveUserByEmail(string email)
 		{
 			var user = await dbContext.Users.FirstOrDefaultAsync(_ => _.Email == email);
 			dbContext.Users.Remove(user);
