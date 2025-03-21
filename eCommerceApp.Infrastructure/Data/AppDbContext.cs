@@ -11,7 +11,6 @@ namespace eCommerceApp.Infrastructure.Data
 		{
 		}
 
-		public DbSet<AppUser> users { get; set; }
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<RefreshToken> RefreshToken { get; set; }

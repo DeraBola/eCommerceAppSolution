@@ -19,7 +19,7 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication
 			return (await userManager.CreateAsync(user!, user!.PasswordHash!)).Succeeded;
 		}
 
-		public async Task<IEnumerable<AppUser>?> GetAllUsers() => await dbContext.users.ToListAsync();
+		public async Task<IEnumerable<AppUser>?> GetAllUsers() => await dbContext.Users.ToListAsync();
 
 		public async Task<AppUser?> GetUserByEmail(string email) => await userManager.FindByEmailAsync(email);
 
