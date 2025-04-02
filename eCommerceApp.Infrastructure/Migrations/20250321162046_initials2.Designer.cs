@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceApp.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using eCommerceApp.Infrastructure.Data;
 namespace eCommerceApp.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250321162046_initials2")]
+    partial class initials2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace eCommerceApp.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6A1EBD8E-8F3A-4B2E-BE41-3D56B21739D5",
+                            Id = "bb4d5d54-5e45-41af-b251-6c8d0c508847",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "F5A8B4E7-75C9-4D9B-8C12-3F89A3EF6D9D",
+                            Id = "d3b6f917-0bc4-43f0-bbae-ac2b3a59cf75",
                             Name = "User",
                             NormalizedName = "USER"
                         });

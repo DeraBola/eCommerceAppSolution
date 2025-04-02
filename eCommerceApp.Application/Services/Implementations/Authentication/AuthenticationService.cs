@@ -54,6 +54,8 @@ namespace eCommerceApp.Application.Services.Implementations.Authentication
 
 		public async Task<LoginResponse> LoginUser(LoginUser user)
 		{
+			Console.WriteLine($"Received login request: Email={user.Email}");
+
 			var _validationResult = await validationService.ValidateAsync(user, loginUserValidator);
 			if (!_validationResult.Success)
 				return new LoginResponse(Message: _validationResult.Message);
@@ -68,8 +70,20 @@ namespace eCommerceApp.Application.Services.Implementations.Authentication
 			var _user = await userManagement.GetUserByEmail(user.Email);
 			var claims = await userManagement.GetUserClaims(_user!.Email!);
 
+			if (claims == null || claims.Count == 0)
+			{
+				Console.WriteLine("Cannot generate token with empty claims.");
+			}
+
+
+			Console.WriteLine($"Claims: {string.Join(", ", claims.Select(c => $"{c.Type}={c.Value}"))}");
+
+			Console.WriteLine($"User found: {_user.Email}, {_user.Id}");
+
 			string jwtToken = tokenManagement.GenerateToken(claims);
 			string refreshToken = tokenManagement.GetRefreshToken();
+
+			Console.WriteLine($"Refresh Token: {refreshToken}");
 
 			int saveTokenResult = await tokenManagement.AddRefreshToken(_user.Id, refreshToken);
 			return saveTokenResult <= 0

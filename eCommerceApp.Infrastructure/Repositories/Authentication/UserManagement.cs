@@ -31,15 +31,26 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication
 
 		public async Task<List<Claim>> GetUserClaims(string email)
 		{
+			Console.WriteLine($"Fetching claims for email: {email}");
+
 			var _user = await GetUserByEmail(email);
+
+			if (_user is null) Console.WriteLine($"No email found for: {email}");
+
 			string? roleName = await roleManagement.GetUserRole(_user!.Email!);
 
+			if (string.IsNullOrEmpty(roleName))
+			{
+				Console.WriteLine($"No role found for user: {email}");
+				roleName = "User"; // Fallback role or handle appropriately
+			}
+
 			List<Claim> claims = [
-				new Claim("FullName", _user!.FullName),
-				new Claim(ClaimTypes.NameIdentifier, _user!.Id),
-				new Claim(ClaimTypes.Email, _user!.Email!),
-				new Claim(ClaimTypes.Role, roleName!)
-			];
+	new Claim("FullName", _user!.FullName ?? ""),
+	new Claim(ClaimTypes.NameIdentifier, _user!.Id ?? ""),
+	new Claim(ClaimTypes.Email, _user!.Email ?? ""),
+	new Claim(ClaimTypes.Role, roleName ?? "Unknown")
+];
 
 			return claims;
 		}
@@ -58,7 +69,7 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication
 		public async Task<int> RemoveUserByEmail(string email)
 		{
 			var user = await dbContext.Users.FirstOrDefaultAsync(_ => _.Email == email);
-			dbContext.Users.Remove(user);
+			dbContext.Users.Remove(user!);
 			return await dbContext.SaveChangesAsync();
 		}
 	}
