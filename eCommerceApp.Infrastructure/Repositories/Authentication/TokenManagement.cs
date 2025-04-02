@@ -27,7 +27,7 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication
 
 		public string GenerateToken(List<Claim> claims)
 		{
-			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt: Key"]!));
+			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!));
 			var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 			var expiration = DateTime.UtcNow.AddHours(2);
 

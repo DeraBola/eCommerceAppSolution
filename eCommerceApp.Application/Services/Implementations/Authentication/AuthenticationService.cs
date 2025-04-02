@@ -75,20 +75,25 @@ namespace eCommerceApp.Application.Services.Implementations.Authentication
 				Console.WriteLine("Cannot generate token with empty claims.");
 			}
 
-
-			Console.WriteLine($"Claims: {string.Join(", ", claims.Select(c => $"{c.Type}={c.Value}"))}");
-
-			Console.WriteLine($"User found: {_user.Email}, {_user.Id}");
-
 			string jwtToken = tokenManagement.GenerateToken(claims);
 			string refreshToken = tokenManagement.GetRefreshToken();
 
 			Console.WriteLine($"Refresh Token: {refreshToken}");
 
-			int saveTokenResult = await tokenManagement.AddRefreshToken(_user.Id, refreshToken);
+			int saveTokenResult = 0;
+			bool userTokenCheck = await tokenManagement.ValidateRefreshToken(refreshToken);
+			if (userTokenCheck)
+			{
+				saveTokenResult = await tokenManagement.UpdateRefreshToken(_user.Id, refreshToken);
+			}
+			else
+			{
+				saveTokenResult = await tokenManagement.AddRefreshToken(_user.Id, refreshToken);
+			}
+
 			return saveTokenResult <= 0
 				? new LoginResponse(Message: "Internal error occurred while authenticating") : 
-			 new LoginResponse(Success: true, Token: jwtToken, RefreshToken: refreshToken);
+			 new LoginResponse(Success: true, Token: jwtToken, RefreshToken: refreshToken, Message: "Login Successful!");
 		}
 
 		public async Task<LoginResponse> ReviveToken(string refreshToken)
