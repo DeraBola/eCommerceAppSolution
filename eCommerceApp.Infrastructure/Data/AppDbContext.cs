@@ -27,7 +27,7 @@ namespace eCommerceApp.Infrastructure.Data
 				.HasData(
 					new PaymentMethod
 					{
-						Id = Guid.NewGuid(),
+						Id = new Guid("3D1E8A3F-9F6F-4B8C-8EB7-9D98B7C7D056"),
 						Name = "Credit Card", 
 					}
 				);
