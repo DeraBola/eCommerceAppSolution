@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eCommerceApp.Application.DTOs;
+using eCommerceApp.Application.DTOs.Cart;
+using eCommerceApp.Domain.Entities;
 
-namespace eCommerceApp.Application.DTOs.Cart
+namespace eCommerceApp.Application.Services.Interfaces.Cart
 {
-	internal interface IPaymentService
-	{
-	}
+    public interface IPaymentService
+    {
+        Task<ServiceResponse> Pay(decimal totalAmount, IEnumerable<Product> cartProducts, IEnumerable<ProcessCart> carts);
+    }
 }

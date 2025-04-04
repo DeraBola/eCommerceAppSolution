@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eCommerceApp.Domain.Entities.Cart
 {
-	internal class PaymentMethod
+	public class PaymentMethod
 	{
+		[Key]
+		public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; } = string.Empty;
 	}
 }

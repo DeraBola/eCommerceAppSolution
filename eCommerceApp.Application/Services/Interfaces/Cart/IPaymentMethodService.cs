@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eCommerceApp.Application.DTOs.Cart;
 
 namespace eCommerceApp.Application.Services.Interfaces.Cart
 {
-	internal interface IPaymentMethodService
+	public interface IPaymentMethodService
 	{
+		Task<IEnumerable<GetPaymentMethod>> GetPaymentMethods();
 	}
 }

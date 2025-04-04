@@ -2,8 +2,8 @@
 
 namespace eCommerceApp.Domain.Interfaces.Cart
 {
-	public interface IPaymentMethod
+	public interface ICart
 	{
-		Task<IEnumerable<PaymentMethod>> GetPaymentMethods();
+		Task<int> SaveCheckoutHistory(IEnumerable<Archive> checkouts);
 	}
 }
