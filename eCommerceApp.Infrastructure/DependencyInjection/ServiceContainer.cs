@@ -82,6 +82,9 @@ namespace eCommerceApp.Infrastructure.DependencyInjection
 			services.AddScoped<IPaymentMethod, PaymentMethodRepository>();
 			services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 			services.AddScoped<IPaymentService, StripePaymentService>();
+			services.AddScoped<ICart, CartRepository>();
+			services.AddScoped<ICartService, CartService>();
+
 			Stripe.StripeConfiguration.ApiKey = config["Stripe:SecreteKey"];
 
 			return services;
