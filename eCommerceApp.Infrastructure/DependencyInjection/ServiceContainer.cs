@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using eCommerceApp.Application.Services.Implementations.Cart;
 using eCommerceApp.Application.Services.Interfaces.Cart;
 using eCommerceApp.Application.Services.Interfaces.Logging;
 using eCommerceApp.Domain.Entities;
@@ -79,6 +80,7 @@ namespace eCommerceApp.Infrastructure.DependencyInjection
 			services.AddScoped<ITokenManagement, TokenManagement>();
 			services.AddScoped<IRoleManagement, RoleManagement>();
 			services.AddScoped<IPaymentMethod, PaymentMethodRepository>();
+			services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 			services.AddScoped<IPaymentService, StripePaymentService>();
 			Stripe.StripeConfiguration.ApiKey = config["Stripe:SecreteKey"];
 
